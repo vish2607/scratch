@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     target: ['es5', 'web'],
@@ -29,18 +30,27 @@ module.exports = {
             {
                 test: /\.js$/i,
                 use: {
-                    loader: 'babel-loader', 
+                    loader: 'babel-loader',
                     options: {
                         presets: [
                             '@babel/preset-env'
                         ]
                     }
                 }
+            },
+            {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, "css-loader"]
             }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: 'index.html',
-        scriptLoading: 'defer'
-    })],
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'index.html',
+            scriptLoading: 'defer'
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'styles.[contenthash].css'
+        })
+    ],
 }
