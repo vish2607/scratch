@@ -1,10 +1,10 @@
 import { Constants } from "./scripts/Constants";
-import { someName } from "./scripts/index.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    let firstDiv: HTMLDivElement = document.querySelector('div:first-child');
+document.addEventListener("DOMContentLoaded", () => {
+    const query = document.querySelector.bind(document);
+    let firstDiv: HTMLDivElement =
+        query("div:first-child") ||
+        query("body").appendChild(document.createElement("div"));
     firstDiv.innerHTML = Constants?.initValue;
 });
 
-let s = new someName();
-s.callMe("karan", "vishal");
