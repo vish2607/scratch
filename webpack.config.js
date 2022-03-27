@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
+    devtool: 'eval-source-map',
     entry: './src/index.ts',
     output: {
         filename: 'bundle.[contenthash].js',
@@ -13,6 +14,9 @@ module.exports = {
         static: path.join(__dirname, 'dist'),
         port: 3000,
         hot: true
+    },
+    resolve: {
+        extensions: ['.ts', '.js']
     },
     module: {
         rules: [
