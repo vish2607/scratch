@@ -2,8 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+    target: ['es5', 'web'],
     mode: 'development',
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     entry: './src/index.ts',
     output: {
         filename: 'bundle.[contenthash].js',
@@ -24,6 +25,17 @@ module.exports = {
                 test: /\.ts$/i,
                 use: 'ts-loader',
                 include: [path.resolve(__dirname, 'src')]
+            },
+            {
+                test: /\.js$/i,
+                use: {
+                    loader: 'babel-loader', 
+                    options: {
+                        presets: [
+                            '@babel/preset-env'
+                        ]
+                    }
+                }
             }
         ]
     },
