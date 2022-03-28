@@ -1,4 +1,5 @@
 import { Constants } from "./scripts/Constants";
+import './styles/styles.scss';
 
 document.addEventListener("DOMContentLoaded", () => {
     const [query, create] = [document.querySelector.bind(document), document.createElement.bind(document)];
