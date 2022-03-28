@@ -15,6 +15,7 @@ module.exports = {
     devServer: {
         static: path.join(__dirname, 'dist'),
         port: 3000,
+        watchFiles: ["./src/template.html"],
         hot: true
     },
     resolve: {
@@ -77,7 +78,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.html',
+            template: './src/template.html',
             scriptLoading: 'defer'
         }),
         new MiniCssExtractPlugin({
