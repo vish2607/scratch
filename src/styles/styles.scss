@@ -1,0 +1,20 @@
+@use "global";
+@font-face {
+  font-family: demiela;
+  src: url(./../assets/fonts/demiela.ttf);
+}
+body {
+  background-image: url("./../assets/images/background.png");
+  font: global.to-rem(25) demiela;
+  color: global.$secondary;
+  
+  div:first-child {
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+    background: global.$primary;
+    min-height: global.to-rem(200);
+    color: global.$secondary;
+    padding: global.to-rem(20);
+  }
+}

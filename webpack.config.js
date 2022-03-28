@@ -3,8 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    target: ['es5', 'web'],
     mode: 'development',
+    target: ['es5', 'web'],
     devtool: 'source-map',
     entry: './src/index.ts',
     output: {
@@ -39,8 +39,39 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/i,
-                use: [MiniCssExtractPlugin.loader, "css-loader"]
+                test: /\.(s[ac]|c)ss$/i,
+                use: [
+                    { loader: MiniCssExtractPlugin.loader, options: { publicPath: "" } },
+                    "css-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    "postcss-preset-env"
+                                ]
+                            }
+                        }
+                    },
+                    "sass-loader"
+                ]
+            },
+            {
+                test: /\.(png|gif|jpe?g|ico)$/i,
+                type: "asset",
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 30 * 1024
+                    }
+                }
+            },
+            {
+                test: /\.html$/i,
+                use: ['html-loader']
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'asset/resource',
             }
         ]
     },
