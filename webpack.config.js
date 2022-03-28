@@ -13,9 +13,8 @@ module.exports = {
         clean: true
     },
     devServer: {
-        static: path.join(__dirname, 'dist'),
         port: 3000,
-        watchFiles: ["./src/template.html"],
+        watchFiles: ["./src/**/*"],
         hot: true
     },
     resolve: {
