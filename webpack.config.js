@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -6,9 +7,9 @@ module.exports = {
     mode: 'development',
     target: ['es5', 'web'],
     devtool: 'source-map',
-    entry: './src/index.ts',
+    entry: { main: './src/index.ts', vendor: './src/component/component.ts' },
     output: {
-        filename: 'bundle.[contenthash].js',
+        filename: '[name].[contenthash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true
     },
@@ -19,6 +20,9 @@ module.exports = {
     },
     resolve: {
         extensions: ['.ts', '.js']
+    },
+    optimization: {
+        runtimeChunk: 'single',
     },
     module: {
         rules: [
@@ -82,6 +86,10 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: 'styles.[contenthash].css'
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
         })
     ],
 }

@@ -9,5 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let heading: HTMLHeadingElement = create('h1');
     heading.innerHTML = Constants?.initValue;
     firstDiv.appendChild(heading);
+
+    // jQuery Example
+    $('div').addClass('example-jquery');
 });
 
